@@ -1,0 +1,21 @@
+<?php
+$con=mysqli_connect("localhost","root","","project");
+if(isset($_POST['user'])){
+	$q='SELECT * FROM `users` WHERE `Username`="'.$_POST['user'].'"';
+	$r=mysqli_query($con,$q);
+	if($r){
+		if(mysqli_num_rows($r)>0){
+			while($row=mysqli_fetch_assoc($r)){
+				$user_name=$row['Username'];
+				echo'<option value="'.$user_name.'">';
+			}
+		}else{
+			echo '<option value="no user">';
+		}
+	}
+	else{
+		echo $q;
+	}
+}
+
+?>
